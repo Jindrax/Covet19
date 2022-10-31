@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Admins.Admin.Domain.Admin" table="Admins">
+        <composite-id name="idAdmin" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona"
+                      access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="cedulaAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.CedulaPersona"
+                   access="field">
+            <property name="value" column="cedula" access="field" type="long"/>
+        </component>
+
+        <component name="nombreAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.NombrePersona"
+                   access="field">
+            <property name="value" column="nombre" access="field" type="string"/>
+        </component>
+
+        <component name="telefonoAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.TelefonoPersona"
+                   access="field">
+            <property name="value" column="telefono" access="field" type="long"/>
+        </component>
+
+        <component name="correoAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.CorreoPersona"
+                   access="field">
+            <property name="value" column="correo" access="field" type="string"/>
+        </component>
+
+        <component name="direccionAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.DireccionPersona"
+                   access="field">
+            <property name="value" column="direccion" access="field" type="string"/>
+        </component>
+
+        <component name="passwordAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.PasswordPersona"
+                   access="field">
+            <property name="value" column="password" access="field" type="string"/>
+        </component>
+
+        <component name="fechaNacimientoAdmin"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.FechaNacimientoPersona"
+                   access="field">
+            <property name="value" column="fechaNacimiento" access="field" type="date"/>
+        </component>
+    </class>
+</hibernate-mapping>

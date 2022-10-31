@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Shared.Domain.Index.Domain.Index" table="EmailIndex">
+        <composite-id name="correoPersona" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.CorreoPersona"
+                      access="field">
+            <key-property name="value" column="email" access="field" length="30"/>
+        </composite-id>
+
+        <component name="refererenceValueObject"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Index.Domain.ValueObjects.RefererenceValueObject"
+                   access="field">
+            <property name="value" column="reference" access="field" type="string"/>
+        </component>
+
+        <component name="rolValueObject"
+                   class="com.javeriana.web.four.covet19.Shared.Domain.Index.Domain.ValueObjects.RolValueObject"
+                   access="field">
+            <property name="value" column="rol" access="field" type="string"/>
+        </component>
+    </class>
+</hibernate-mapping>

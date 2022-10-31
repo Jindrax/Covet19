@@ -1,0 +1,28 @@
+<directives>
+    <directive endpoint="/mail/send"/>
+    <directive endpoint="/producto" authority="ROLE_ADMIN" method="PATCH"/>
+    <directive endpoint="/producto" authority="ROLE_ADMIN" method="DELETE"/>
+    <!--directive endpoint="/admin" authority="ROLE_ADMIN"/-->
+    <directive endpoint="/admin/*" authority="ROLE_ADMIN"/>
+    <directive endpoint="/admins" authority="ROLE_ADMIN"/>
+    <directive endpoint="/veterinarios/{id}/agenda" authority="ROLE_VETERINARIO"/>
+    <directive endpoint="/veterinarios/update" authority="ROLE_VETERINARIO"/>
+    <directive endpoint="/veterinarios/new" authority="ROLE_ADMIN"/>
+    <!--<directive endpoint="/veterinarios" authority="ROLE_ADMIN"/> -->
+    <!--<directive endpoint="/citas/new" authority="ROLE_USER"/>-->
+    <directive endpoint="/citas/agregarDiagnostico" authority="ROLE_VETERINARIO"/>
+    <directive endpoint="/citas/delete/{idCita}" authority="ROLE_USER"/>
+    <directive endpoint="/citas/{idCita}/update" authority="ROLE_USER"/>
+    <directive endpoint="/citas/ver/{idCita}" authority="ROLE_USER"/>
+    <!-- <directive endpoint="/citas/{idCita}" authority="ROLE_VETERINARIO"/>-->
+    <directive endpoint="/mascotas" authority="ROLE_ADMIN"/>
+    <directive endpoint="/mascotas/create" authority="ROLE_USER"/>
+    <directive endpoint="/mascotas/{id}" authority="ROLE_USER"/>
+    <directive endpoint="/mascotas/{id}" authority="ROLE_VETERINARIO"/>
+    <directive endpoint="/mascotas/update" authority="ROLE_USER"/>
+    <directive endpoint="/pedido" authority="ROLE_USER"/>
+    <directive endpoint="/pedidos" authority="ROLE_ADMIN"/>
+    <directive endpoint="/pedidos/enviar/{id}" authority="ROLE_ADMIN"/>
+    <directive endpoint="/pedidos/usuarios/{id}" authority="ROLE_USER"/>
+    <directive endpoint="/users/*" authority="ROLE_USER"/>
+</directives>

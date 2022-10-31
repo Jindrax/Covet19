@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Repositorios-->
+
+    <bean id="HibernateVeterinarioRepository"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Infrastructure.Hibernate.HibernateVeterinarioRepository"/>
+    <bean id="HibernateCitaRepository"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Infrastructure.Hibernate.HibernateCitaRepository"/>
+    <bean id="HibernateMascotaRepository"
+          class="com.javeriana.web.four.covet19.Usuarios.Mascota.Infrastructure.Hibernate.HibernateMascotaRepository"/>
+    <bean id="HibernateProductoRepository"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Infrastructure.Hibernate.HibernateProductoRepository"/>
+    <bean id="HibernateIndexRepository"
+          class="com.javeriana.web.four.covet19.Shared.Domain.Index.Infrastructure.Hibernate.HibernateIndexRepository"/>
+    <bean id="HibernateAdminRepository"
+          class="com.javeriana.web.four.covet19.Admins.Admin.Infrastructure.Hibernate.HibernateAdminRepository"/>
+    <bean id="HibernatePedidoRepository"
+          class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Infrastructure.Hibernate.HibernatePedidoRepository"/>
+    <bean id="HibernateUserRepository"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Infrastructure.Hibernate.HibernateUserRepository"/>
+
+    <!--Mascotas-->
+
+    <bean id="MascotaCreator" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.Create.MascotaCreator">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+        <constructor-arg ref="AgregraMascota"/>
+    </bean>
+    <bean id="MascotaModificarDiagnostico"
+          class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.ModificarCitaDiagnostico.MascotaModificarCitaDiagnostico">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+    <bean id="MascotaModificarFechaCita"
+          class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.ModificarFechaCita.MascotaModificarFechaCita">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+
+    <bean id="MascotaFinder" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.Find.MascotaFinder">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+    <bean id="UpdateMascota"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.UpdateMascotaUsuario.UpdateMascota">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+
+    <bean id="MascotaAll" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.All.MascotaAll">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+
+    <bean id="MascotaUpdate" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.Update.MascotaUpdate">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+        <constructor-arg ref="UpdateMascota"/>
+    </bean>
+
+    <bean id="AgregarCitaMascota"
+          class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.AgregarCitaMascota.AgregarCitaMascota">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+
+    <bean id="EliminarCitaMascota"
+          class="com.javeriana.web.four.covet19.Usuarios.Mascota.Application.EliminarCitaMascota.EliminarCitaMascota">
+        <constructor-arg ref="HibernateMascotaRepository"/>
+    </bean>
+
+    <!--Citas-->
+
+    <bean id="CitaVerCita" class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.VerCita.CitaVerCita">
+        <constructor-arg ref="HibernateCitaRepository"/>
+    </bean>
+
+    <bean id="CitaAgregarDiagnostico"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.AgregarDiagnostico.CitaAgregarDiagnostico">
+        <constructor-arg ref="HibernateCitaRepository"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="NotifyOnCitaAgregarDiagnostico"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.AgregarDiagnostico.NotifyOnCitaAgregarDiagnostico">
+        <constructor-arg ref="VeterinarioModificarCitaDiagnostico"/>
+        <constructor-arg ref="MascotaModificarDiagnostico"/>
+    </bean>
+
+    <bean id="CitaUpdate"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.Update.CitaUpdate">
+        <constructor-arg ref="HibernateCitaRepository"/>
+        <constructor-arg ref="MascotaModificarDiagnostico"/>
+        <constructor-arg ref="VeterinarioModificarCitaDiagnostico"/>
+        <constructor-arg ref="MascotaModificarFechaCita"/>
+        <constructor-arg ref="VeterinarioModificarFechaCita"/>
+    </bean>
+
+    <bean id="AgendarCita"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.Create.AgendarCita">
+        <constructor-arg ref="HibernateCitaRepository"/>
+        <constructor-arg ref="AgregarCitaMascota"/>
+        <constructor-arg ref="AgregarCitaVeterinario"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="DeleteCita"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.Delete.DeleteCita">
+        <constructor-arg ref="HibernateCitaRepository"/>
+        <constructor-arg ref="EliminarCitaVeterinario"/>
+        <constructor-arg ref="EliminarCitaMascota"/>
+    </bean>
+    <bean id="CitaAll"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.All.CitaAll">
+        <constructor-arg ref="HibernateCitaRepository"/>
+    </bean>
+
+    <bean id="NotifyOnCitaCreated"
+          class="com.javeriana.web.four.covet19.Veterinarios.Cita.Application.Create.NotifyOnCitaCreated">
+        <constructor-arg ref="VeterinarioFinder"/>
+        <constructor-arg ref="MascotaFinder"/>
+        <constructor-arg ref="UserFinder"/>
+        <constructor-arg ref="MailSender"/>
+    </bean>
+
+    <!--Veterinarios-->
+
+    <bean id="VeterinarioVerAgenda"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.VerAgenda.VeterinarioVerAgenda">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="VeterinarioCreator"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.Create.VeterinarioCreator">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="VeterinarioUpdate"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.Update.VeterinarioUpdate">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="VeterinarioVerVeterinarios"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.VerVeterinarios.VeterinarioVerVeterinarios">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="VeterinarioModificarCitaDiagnostico"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.ModificarCitaDiagnostico.VeterinarioModificarCitaDiagnostico">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="VeterinarioModificarFechaCita"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.VeterinarioModificarFechaCita.VeterinarioModificarFechaCita">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="VeterinarioFinder"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.Find.VeterinarioFinder">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="AgregarCitaVeterinario"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.AgregarCitaVeterinario.AgregarCitaVeterinario">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="EliminarCitaVeterinario"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.EliminarCitaVeterinario.EliminarCitaVeterinario">
+        <constructor-arg ref="HibernateVeterinarioRepository"/>
+    </bean>
+
+    <bean id="LoginVeterinario"
+          class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Application.Login.LoginVeterinario">
+        <constructor-arg ref="VeterinarioFinder"/>
+    </bean>
+
+
+    <!--Productos-->
+
+    <bean id="ProductoCreator"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.Create.ProductoCreator">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="AllProductos" class="com.javeriana.web.four.covet19.Productos.Producto.Application.All.AllProductos">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="AllAvaliableProductos"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.AllAvaliable.AllAvaliableProductos">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="FindProducto" class="com.javeriana.web.four.covet19.Productos.Producto.Application.Find.FindProducto">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="UpdateProducto"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.Update.UpdateProducto">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="DeleteProducto"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.Delete.DeleteProducto">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="CanConsumeProducto"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.CanConsume.CanConsumeProducto">
+        <constructor-arg ref="FindProducto"/>
+    </bean>
+
+    <bean id="ConsumeProductoOnPedido"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.Update.ConsumeProductoOnPedido">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="BuscarProducto"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.BucarProducto.BuscarProducto">
+        <constructor-arg ref="HibernateProductoRepository"/>
+    </bean>
+
+    <bean id="LoadStock"
+          class="com.javeriana.web.four.covet19.Productos.Producto.Application.LoadStock.LoadStock">
+        <constructor-arg ref="HibernateProductoRepository"/>
+        <constructor-arg ref="FindProducto"/>
+    </bean>
+
+    <!--Admins-->
+
+    <bean id="CreateAdmin" class="com.javeriana.web.four.covet19.Admins.Admin.Application.Create.CreateAdmin">
+        <constructor-arg ref="HibernateAdminRepository"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="AllAdmins" class="com.javeriana.web.four.covet19.Admins.Admin.Application.All.AllAdmins">
+        <constructor-arg ref="HibernateAdminRepository"/>
+    </bean>
+
+    <bean id="FindAdmin" class="com.javeriana.web.four.covet19.Admins.Admin.Application.Find.FindAdmin">
+        <constructor-arg ref="HibernateAdminRepository"/>
+    </bean>
+
+    <bean id="UpdateAdmin" class="com.javeriana.web.four.covet19.Admins.Admin.Application.Update.UpdateAdmin">
+        <constructor-arg ref="HibernateAdminRepository"/>
+    </bean>
+
+    <bean id="LoginAdmin"
+          class="com.javeriana.web.four.covet19.Admins.Admin.Application.Login.LoginAdmin">
+        <constructor-arg ref="FindAdmin"/>
+    </bean>
+
+    <!--Pedidos-->
+
+    <bean id="PedidoAll" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Application.All.PedidoAll">
+        <constructor-arg ref="HibernatePedidoRepository"/>
+    </bean>
+
+    <bean id="PedidoFinderFinalizar"
+          class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Application.Finalizar.PedidoFinderFinalizar">
+        <constructor-arg ref="HibernatePedidoRepository"/>
+    </bean>
+    <bean id="PedidoFindUsuarioAll"
+          class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Application.FindPedidosUsuario.PedidoFindUsuarioAll">
+        <constructor-arg ref="HibernatePedidoRepository"/>
+    </bean>
+
+    <bean id="PedidoFinderEnviar"
+          class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Application.Enviar.PedidoFinderEnviar">
+        <constructor-arg ref="HibernatePedidoRepository"/>
+    </bean>
+
+    <!--Users-->
+
+    <bean id="BadWordService"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.BadWordsService.BadWordsService"/>
+
+    <bean id="UserFinder" class="com.javeriana.web.four.covet19.Usuarios.User.Application.Find.UserFinder">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="UserVerCarrito"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.VerCarrito.UserVerCarrito">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="UserEliminarElementoCarrito"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.EliminarElementoCarrito.UserEliminarElementoCarrito">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="UserModificarCantidadElementoCarrito"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.ModificarCantidadElementoCarrito.UserModificarCantidadElementoCarrito">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="UserCreator" class="com.javeriana.web.four.covet19.Usuarios.User.Application.Create.UserCreator">
+        <constructor-arg ref="HibernateUserRepository"/>
+        <constructor-arg ref="BadWordService"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="UserUpdater" class="com.javeriana.web.four.covet19.Usuarios.User.Application.Update.UserModifier">
+        <constructor-arg ref="HibernateUserRepository"/>
+        <constructor-arg ref="BadWordService"/>
+    </bean>
+    <bean id="UpdateUser" class="com.javeriana.web.four.covet19.Usuarios.User.Application.UpdateUser.UpdateUser">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="UserFinderMascotas"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.FindMascotaByUsuario.UserFinderMascotas">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+
+    <bean id="CreatePedido"
+          class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Application.Create.CreatePedido">
+        <constructor-arg ref="HibernatePedidoRepository"/>
+        <constructor-arg ref="CanConsumeProducto"/>
+        <constructor-arg ref="SpringApplicationEventBus"/>
+    </bean>
+
+    <bean id="AgregarElementoCarrito"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.AgregarElementoCarrito.AgregarElementoCarrito">
+        <constructor-arg ref="HibernateUserRepository"/>
+        <constructor-arg ref="FindProducto"/>
+    </bean>
+    <bean id="VerCitasAgendadas"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.VerCitasAgendadas.VerCitasAgendadas">
+        <constructor-arg ref="HibernateUserRepository"/>
+        <constructor-arg ref="CitaAll"/>
+    </bean>
+
+    <bean id="LoginUser"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.Login.LoginUser">
+        <constructor-arg ref="UserFinder"/>
+    </bean>
+    <bean id="AgregraMascota"
+          class="com.javeriana.web.four.covet19.Usuarios.User.Application.AgregarMascota.AgregarMascota">
+        <constructor-arg ref="HibernateUserRepository"/>
+    </bean>
+    <!--Shared-->
+
+    <bean id="Login" class="com.javeriana.web.four.covet19.Shared.Application.Login">
+        <constructor-arg ref="HibernateIndexRepository"/>
+        <constructor-arg ref="LoginAdmin"/>
+        <constructor-arg ref="LoginUser"/>
+        <constructor-arg ref="LoginVeterinario"/>
+    </bean>
+
+    <!--Index-->
+
+    <bean id="CreateIndex" class="com.javeriana.web.four.covet19.Shared.Domain.Index.Application.Create.CreateIndex">
+        <constructor-arg ref="HibernateIndexRepository"/>
+    </bean>
+
+    <bean id="CreateIndexOnPersonCreated"
+          class="com.javeriana.web.four.covet19.Shared.Domain.Index.Application.Create.CreateIndexOnPersonCreated">
+        <constructor-arg ref="CreateIndex"/>
+    </bean>
+
+    <!--Index-->
+
+    <bean id="RabbitMqPublisher"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqPublisher"/>
+
+    <bean id="RabbitMqEventBus"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqEventBus">
+        <constructor-arg ref="RabbitMqPublisher"/>
+    </bean>
+
+    <bean id="DomainEventsInformation"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.RabbitMQ.DomainEventsInformation"/>
+
+    <bean id="DomainEventJsonDeserializer"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.RabbitMQ.Serializable.DomainEventJsonDeserializer">
+        <constructor-arg ref="DomainEventsInformation"/>
+    </bean>
+
+    <bean id="RabbitMqDomainEventsConsumer"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.RabbitMQ.RabbitMqDomainEventsConsumer">
+        <constructor-arg ref="DomainEventJsonDeserializer"/>
+        <constructor-arg ref="DomainEventsInformation"/>
+    </bean>
+
+    <bean id="MailSender"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Mail.ElasticEmail.MailSenderElasticEmail"/>
+
+    <bean id="SpringApplicationEventBus"
+          class="com.javeriana.web.four.covet19.Shared.Infrastructure.Bus.Event.Spring.SpringApplicationEventBus"/>
+
+    <bean id="MailIssuedOnEvent"
+          class="com.javeriana.web.four.covet19.Shared.Application.MailIssuedOnEvent">
+        <constructor-arg ref="MailSender"/>
+    </bean>
+
+</beans>

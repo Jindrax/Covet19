@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.Mascota" table="Mascotas">
+        <composite-id name="idMascota" class="com.javeriana.web.four.covet19.Shared.Domain.Mascota.IdMascota" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="nombreMascota" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.ValueObjects.NombreMascota" access="field">
+            <property name="value" column="nombre" access="field" type="string"/>
+        </component>
+
+        <component name="edadMascota" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.ValueObjects.EdadMascota" access="field">
+            <property name="value" column="edad" access="field" type="integer"/>
+        </component>
+
+        <component name="pesoMascota" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.ValueObjects.PesoMascota" access="field">
+            <property name="value" column="peso" access="field" type="double"/>
+        </component>
+
+        <component name="tipoMascota" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.ValueObjects.TipoMascota" access="field">
+            <property name="value" column="tipo" access="field" type="string"/>
+        </component>
+
+        <component name="razaMascota" class="com.javeriana.web.four.covet19.Usuarios.Mascota.Domain.ValueObjects.RazaMascota" access="field">
+            <property name="value" column="raza" access="field" type="string"/>
+        </component>
+
+        <property name="historialClinicoMascota" column="historial" access="field">
+            <type name="com.javeriana.web.four.covet19.Usuarios.Mascota.Infrastructure.Hibernate.HistorialCustomDetail">
+            </type>
+        </property>
+        <component name="idUsuario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona" access="field">
+            <property name="value" column="idUsuario" access="field" type="string"/>
+        </component>
+    </class>
+</hibernate-mapping>

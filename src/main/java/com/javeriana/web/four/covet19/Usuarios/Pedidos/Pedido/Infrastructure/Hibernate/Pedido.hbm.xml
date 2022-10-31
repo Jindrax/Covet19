@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.Pedido" table="Pedidos">
+        <composite-id name="idPedido" class="com.javeriana.web.four.covet19.Shared.Domain.Pedido.IdPedido" access="field">
+            <key-property name="value" column="idPedido" access="field" length="36"/>
+        </composite-id>
+
+        <component name="enviadoPedido" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.ValueObjects.EnviadoPedido" access="field">
+            <property name="value" column="enviadoPedido" access="field" type="boolean"/>
+        </component>
+
+        <component name="finalizadoPedido" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.ValueObjects.FinalizadoPedido" access="field">
+            <property name="value" column="finalizadoPedido" access="field" type="boolean"/>
+        </component>
+
+        <component name="fechaFinalizadoPedido" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.ValueObjects.FechaFinalizadoPedido" access="field">
+            <property name="value" column="fechaFinalizadoPedido" access="field" type="date"/>
+        </component>
+
+        <component name="fechaEnviadoPedido" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.ValueObjects.FechaEnviadoPedido" access="field">
+            <property name="value" column="fechaEnviadoPedido" access="field" type="date"/>
+        </component>
+
+        <component name="idUsuario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona" access="field">
+            <property name="value" column="idUsuario" access="field" type="string"/>
+        </component>
+        <property name="compraPedidos" column="compraPedido" access="field">
+            <type name="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Infrastructure.Hibernate.CompraPedidoCustomDetail">
+            </type>
+        </property>
+
+        <component name="totalPedido" class="com.javeriana.web.four.covet19.Usuarios.Pedidos.Pedido.Domain.ValueObjects.TotalPedido" access="field">
+            <property name="value" column="total" access="field" type="double"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Veterinarios.Cita.Domain.Cita" table="Citas">
+        <composite-id name="idCita" class="com.javeriana.web.four.covet19.Shared.Domain.Citas.IdCita" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="diagnosticoCita" class="com.javeriana.web.four.covet19.Veterinarios.Cita.Domain.ValueObjects.DiagnosticoCita" access="field">
+            <property name="value" column="diagnostico" access="field" type="string"/>
+        </component>
+
+        <component name="fechaCita" class="com.javeriana.web.four.covet19.Veterinarios.Cita.Domain.ValueObjects.FechaCita" access="field">
+            <property name="value" column="fecha" access="field" type="timestamp"/>
+        </component>
+
+        <component name="idVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona" access="field">
+            <property name="value" column="idVeterinario" access="field" length="36"/>
+        </component>
+
+        <component name="idMascota" class="com.javeriana.web.four.covet19.Shared.Domain.Mascota.IdMascota" access="field">
+            <property name="value" column="idMascota" access="field" length="36"/>
+        </component>
+
+        <component name="idUsuario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona" access="field">
+            <property name="value" column="idUsuario" access="field" length="36"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

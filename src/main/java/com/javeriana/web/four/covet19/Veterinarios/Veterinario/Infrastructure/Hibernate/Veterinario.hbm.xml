@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Domain.Veterinario" table="Veterinarios">
+        <composite-id name="idVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.IdPersona" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="nombreVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.NombrePersona" access="field">
+            <property name="value" column="nombre" access="field" type="string"/>
+        </component>
+
+        <component name="correoVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.CorreoPersona" access="field">
+            <property name="value" column="correo" access="field" type="string"/>
+        </component>
+
+        <component name="cedulaVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.CedulaPersona" access="field">
+            <property name="value" column="cedula" access="field" type="long"/>
+        </component>
+
+        <component name="direccionVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.DireccionPersona" access="field">
+            <property name="value" column="direccion" access="field" type="string"/>
+        </component>
+
+        <component name="telefonoVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.TelefonoPersona" access="field">
+            <property name="value" column="telefono" access="field" type="long"/>
+        </component>
+
+        <component name="passwordVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.PasswordPersona" access="field">
+            <property name="value" column="password" access="field" type="string"/>
+        </component>
+
+        <component name="fechaNacimientoVeterinario" class="com.javeriana.web.four.covet19.Shared.Domain.Persona.ValueObjects.FechaNacimientoPersona" access="field">
+            <property name="value" column="fechaNacimiento" access="field" type="timestamp"/>
+        </component>
+
+        <component name="tarjetaProfesionalVeterinario" class="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Domain.ValueObjects.TarjetaProfesionalVeterinario" access="field">
+            <property name="value" column="tarjetaProfesional" access="field" type="string"/>
+        </component>
+
+        <property name="agendaVeterinario" column="agenda" access="field">
+            <type name="com.javeriana.web.four.covet19.Veterinarios.Veterinario.Infrastructure.Hibernate.AgendaCustomDetail">
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

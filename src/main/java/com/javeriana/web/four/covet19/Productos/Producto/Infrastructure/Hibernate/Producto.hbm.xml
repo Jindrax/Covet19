@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.four.covet19.Productos.Producto.Domain.Producto" table="productos">
+        <composite-id name="productoId" class="com.javeriana.web.four.covet19.Shared.Domain.Productos.ProductoId"
+                      access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="nombreProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.NombreProducto"
+                   access="field">
+            <property name="value" column="nombre" access="field" type="string"/>
+        </component>
+
+        <component name="descripcionProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.DescripcionProducto"
+                   access="field">
+            <property name="value" column="descripcion" access="field" type="string"/>
+        </component>
+
+        <component name="precioProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.PrecioProducto"
+                   access="field">
+            <property name="value" column="precio" access="field" type="double"/>
+        </component>
+
+        <component name="marcaProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.MarcaProducto"
+                   access="field">
+            <property name="value" column="marca" access="field" type="string"/>
+        </component>
+
+        <component name="inventarioProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.InventarioProducto"
+                   access="field">
+            <property name="value" column="inventario" access="field" type="integer"/>
+        </component>
+
+        <component name="habilitadoProducto"
+                   class="com.javeriana.web.four.covet19.Productos.Producto.Domain.ValueObjects.HabilitadoProducto"
+                   access="field">
+            <property name="value" column="habilitado" access="field" type="boolean"/>
+        </component>
+    </class>
+</hibernate-mapping>
